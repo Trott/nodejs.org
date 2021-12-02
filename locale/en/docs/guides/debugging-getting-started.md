@@ -67,15 +67,8 @@ either the IP address or by using ssh tunnels as described below.
 
 ## Inspector Clients
 
-Several commercial and open source tools can connect to the Node.js Inspector.
-Basic info on these follows:
-
-### [node-inspect](https://github.com/nodejs/node-inspect)
-
-* CLI Debugger supported by the Node.js Foundation which uses the [Inspector Protocol][].
-* A version is bundled with Node.js and can be used with `node inspect myscript.js`.
-* The latest version can also be installed independently (e.g. `npm install -g node-inspect`)
-  and used with `node-inspect myscript.js`.
+A minimal CLI debugger is available with `node inspect myscript.js`.
+Several commercial and open source tools can also connect to the Node.js Inspector.
 
 ### [Chrome DevTools](https://github.com/ChromeDevTools/devtools-frontend) 55+, [Microsoft Edge](https://www.microsoftedgeinsider.com)
 
@@ -105,7 +98,7 @@ Basic info on these follows:
 
 ### [chrome-remote-interface](https://github.com/cyrus-and/chrome-remote-interface)
 
-* Library to ease connections to Inspector Protocol endpoints.
+* Library to ease connections to [Inspector Protocol][] endpoints.
 
 ### [Gitpod](https://www.gitpod.io)
 
@@ -214,34 +207,6 @@ This starts a ssh tunnel session where a connection to port 9221 on your local
 machine will be forwarded to port 9229 on remote.example.com. You can now attach
 a debugger such as Chrome DevTools or Visual Studio Code to localhost:9221,
 which should be able to debug as if the Node.js application was running locally.
-
----
-
-## Legacy Debugger
-
-**The legacy debugger has been deprecated as of Node.js 7.7.0. Please use
-`--inspect` and Inspector instead.**
-
-When started with the **--debug** or **--debug-brk** switches in version 7 and
-earlier, Node.js listens for debugging commands defined by the discontinued
-V8 Debugging Protocol on a TCP port, by default `5858`. Any debugger client
-which speaks this protocol can connect to and debug the running process; a
-couple popular ones are listed below.
-
-The V8 Debugging Protocol is no longer maintained or documented.
-
-### [Built-in Debugger](https://nodejs.org/dist/{#var currentVersion}/docs/api/debugger.html)
-
-Start `node debug script_name.js` to start your script under the builtin
-command-line debugger. Your script starts in another Node.js process started with
-the `--debug-brk` option, and the initial Node.js process runs the `_debugger.js`
-script and connects to your target.
-
-### [node-inspector](https://github.com/node-inspector/node-inspector)
-
-Debug your Node.js app with Chrome DevTools by using an intermediary process
-which translates the Inspector Protocol used in Chromium to the V8 Debugger
-protocol used in Node.js.
 
 <!-- refs -->
 
